@@ -7,7 +7,7 @@ import "./styles.scss";
 export const Header = () => {
   return (
     <header className="header">
-      <Button />
+      <Button text="Sign In" onClick={() => 1} style="button" />
     </header>
   );
 };

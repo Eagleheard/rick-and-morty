@@ -1,0 +1,67 @@
+@import "constants/const-styles.scss";
+@import "constants/media-queries.scss";
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: $dark-gray;
+  color: $primary;
+  font-family: $lato;
+  border-radius: 10px;
+  margin: 10px;
+  width: 90%;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 20px;
+  }
+
+  &__name {
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  &__img {
+    width: 30%;
+    border-radius: 10px 0 0 10px;
+  }
+
+  &__status-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+  }
+
+  &__indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 5px;
+
+    &--alive {
+      background-color: $green;
+    }
+
+    &--dead {
+      background-color: $red;
+    }
+
+    &--unknown {
+      background-color: $gray;
+    }
+  }
+
+  &__location {
+    text-align: start;
+  }
+}
