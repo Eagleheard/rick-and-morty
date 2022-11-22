@@ -1,0 +1,12 @@
+@import "constants/const-styles.scss";
+@import "constants/media-queries.scss";
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: $secondary;
+  padding: 10px 0;
+}

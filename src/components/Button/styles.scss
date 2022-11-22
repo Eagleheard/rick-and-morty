@@ -1,0 +1,22 @@
+@import "constants/const-styles.scss";
+@import "constants/media-queries.scss";
+
+.button {
+  background: transparent;
+  align-self: flex-end;
+  color: $primary;
+  border: 1px solid $orange;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: $lato;
+  font-size: 18px;
+  width: 5%;
+  padding: 5px;
+  margin: 0 10px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $orange;
+    transition: background-color 0.2s ease-in-out;
+  }
+}
