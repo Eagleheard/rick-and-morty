@@ -16,8 +16,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     margin-left: 20px;
+    font-family: $lato;
+    padding: 0 5px;
+  }
+
+  &__main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 10px 0;
+    font-family: $lato;
   }
 
   &__name {
@@ -31,7 +42,7 @@
   }
 
   &__img {
-    width: 30%;
+    width: 40%;
     border-radius: 10px 0 0 10px;
   }
 
@@ -39,7 +50,16 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 50%;
+    width: 100%;
+    font-family: $lato;
+  }
+
+  &__location-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+    font-family: $lato;
   }
 
   &__indicator {
@@ -62,6 +82,12 @@
   }
 
   &__location {
+    text-align: start;
+  }
+
+  &__first-seen {
+    margin-bottom: 10px;
+    font-family: $lato;
     text-align: start;
   }
 }

@@ -6,14 +6,13 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 95%;
+  width: 100%;
 
-  .component {
+  &__component {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: auto auto auto auto;
-    grid-template-areas: "card card card card";
-    justify-content: space-between;
+    grid-template-columns: repeat(3, 34.2%);
+    grid-template-areas: "card card card";
     width: 100%;
     margin-top: 20px;
 

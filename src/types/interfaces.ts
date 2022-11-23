@@ -31,3 +31,9 @@ export interface ICard {
   image: string;
   species: string;
 }
+
+export interface IEpisode {
+  id: number;
+  name: string;
+  episode: string;
+}

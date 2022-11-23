@@ -7,7 +7,6 @@ const range = (start: number, end: number) => {
 
 export const paginationCalculation = (
   totalCount: number,
-  pageSize: number,
   siblingCount: number,
   currentPage: number
 ) => {

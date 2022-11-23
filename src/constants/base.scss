@@ -1,20 +1,13 @@
-@import './const-styles.scss';
+@import "./const-styles.scss";
 
 .link {
   color: $primary;
-  font-size: 18px;
+  font-size: 30px;
   font-family: $lato;
-  font-weight: 500;
   text-decoration: none;
-  padding: 10px;
-  margin: 0 30px;
-
-  &.active {
-    color: $search-primary;
-  }
 
   &:hover {
-    color: $hover-link;
+    color: $orange;
   }
 }
 

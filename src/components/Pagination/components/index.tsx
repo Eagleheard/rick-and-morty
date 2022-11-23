@@ -10,7 +10,6 @@ import { PaginationOptions } from "types/enumerators";
 
 interface PaginationProps {
   RenderComponent: React.FC<ICard>;
-  style?: string;
   getPaginatedData: ICard[];
   currentPage: number;
   totalCount: number;
@@ -25,13 +24,10 @@ export const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   currentPage,
   RenderComponent,
-  style,
-  pageSize,
 }) => {
   const paginationRange = usePagination({
     currentPage,
     totalCount,
-    pageSize,
   });
 
   if (
@@ -53,7 +49,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="pagination">
-      <div className={`component--${style} component`}>
+      <div className="pagination__component">
         {getPaginatedData.map((data) => (
           <RenderComponent
             key={data.id}
@@ -67,7 +63,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           />
         ))}
       </div>
-      <div className={`pagination__group--${style} pagination__group`}>
+      <div className="pagination__group">
         <Button
           text="«"
           onClick={onPrevious}
