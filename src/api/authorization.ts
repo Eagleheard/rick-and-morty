@@ -23,7 +23,7 @@ export const login = (params?: IUser) => {
 };
 
 export const authorization = () => {
-  return axios.get(`https://rick-and-morty-server-gzy5.vercel.app/login/auth`, {
+  return axios.get(`https://rick-and-morty-server-gzy5.vercel.app/auth`, {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
