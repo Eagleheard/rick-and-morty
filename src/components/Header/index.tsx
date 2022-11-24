@@ -28,8 +28,12 @@ export const Header = () => {
     try {
       const { data } = await authorization();
       setUser(data);
-    } catch (e) {
-      console.log(e);
+    } catch ({
+      response: {
+        data: { message },
+      },
+    }) {
+      message ? console.log("hi") : console.log("hello");
     }
   };
   useEffect(() => {
