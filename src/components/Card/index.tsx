@@ -45,6 +45,7 @@ export const Card: React.FC<ICard> = ({
   useEffect(() => {
     getEpisodeInfo();
   }, []);
+
   return (
     <div className="card">
       <img src={image} className="card__img" />
@@ -70,10 +71,26 @@ export const Card: React.FC<ICard> = ({
           <p className="card__location">
             Last known location:
             <br />
-            {location.name}
+            <NavLink
+              to={`/location/${location.url?.slice(
+                location.url.lastIndexOf("/") + 1,
+                location.url.length
+              )}`}
+              className="card__location link"
+            >
+              {location.name}
+            </NavLink>
           </p>
         </div>
-        <p className="card__first-seen">First seen: {episodeInfo.name}</p>
+        <p className="card__first-seen">
+          First seen:{" "}
+          <NavLink
+            to={`/episode/${episodeInfo.id}`}
+            className="card__first-seen link"
+          >
+            {episodeInfo.name}
+          </NavLink>
+        </p>
       </div>
     </div>
   );

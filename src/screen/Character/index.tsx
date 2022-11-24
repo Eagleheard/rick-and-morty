@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import classNames from "classnames";
 
 import { fetchCharacterInfo } from "api/fetchCharacterInfo";
 import { ICharacter } from "types/interfaces";
 import { INDICATORS } from "types/enumerators";
-
-import "./styles.scss";
 import { fetchEpisodeInfo } from "api/fetchEpisodeInfo";
 import { IEpisode } from "./../../types/interfaces";
+
+import "./styles.scss";
 
 export const Character = () => {
   const { characterId } = useParams<string>();
@@ -61,11 +61,39 @@ export const Character = () => {
               {character?.status} - {character?.species}
             </p>
           </div>
+          {character?.gender && (
+            <p className="character__gender">Gender: {character.gender}</p>
+          )}
+          {character?.type && (
+            <p className="character__type">Type: {character.type}</p>
+          )}
           <div className="character__origin-location">
-            <p>Origin location: {character?.origin.name}</p>
+            <p>
+              Origin location:{" "}
+              <NavLink
+                className="character__origin-location link"
+                to={`/location/${character?.origin.url.slice(
+                  character?.origin.url.lastIndexOf("/") + 1,
+                  character?.origin.url.length
+                )}`}
+              >
+                {character?.origin.name}
+              </NavLink>
+            </p>
           </div>
           <div className="character__current-location">
-            <p>Current location: {character?.location.name}</p>
+            <p>
+              Current location:{" "}
+              <NavLink
+                className="character__current-location link"
+                to={`/location/${character?.location.url.slice(
+                  character?.location.url.lastIndexOf("/") + 1,
+                  character?.location.url.length
+                )}`}
+              >
+                {character?.location.name}
+              </NavLink>
+            </p>
           </div>
         </div>
         <div className="character__episodes">
@@ -74,9 +102,13 @@ export const Character = () => {
             epInfo
               .sort((prev, next) => prev.id - next.id)
               .map((epName) => (
-                <p className="character__episode" key={epName.id}>
+                <NavLink
+                  to={`/episode/${epName.id}`}
+                  className="character__episode link"
+                  key={epName.id}
+                >
                   {epName.episode} - {epName.name}
-                </p>
+                </NavLink>
               ))}
         </div>
       </div>

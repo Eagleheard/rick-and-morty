@@ -1,19 +1,24 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { Header } from "./components";
-import { Character, Home } from "screen";
+import { Character, Episode, Home, Location } from "screen";
+import { AuthProvider } from "hooks/useAuth";
 
 import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/character/:characterId" element={<Character />} />
-      </Routes>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/character/:characterId" element={<Character />} />
+          <Route path="/episode/:episodeId" element={<Episode />} />
+          <Route path="/location/:locationId" element={<Location />} />
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }

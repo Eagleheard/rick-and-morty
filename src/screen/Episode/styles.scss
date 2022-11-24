@@ -1,0 +1,25 @@
+@import "constants/const-styles";
+@import "constants/media-queries";
+
+.episode {
+  &__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $dark-gray;
+    color: $primary;
+    font-family: $lato;
+    margin-top: 20px;
+    padding: 10px 0;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 34.2%);
+    grid-template-areas: "card card card";
+    width: 100%;
+    margin-top: 20px;
+  }
+}

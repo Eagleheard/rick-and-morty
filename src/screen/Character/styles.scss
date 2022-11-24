@@ -25,7 +25,9 @@
 
   &__status,
   &__origin-location,
-  &__current-location {
+  &__current-location,
+  &__gender,
+  &__type {
     font-family: $lato;
     margin: 10px 0;
   }

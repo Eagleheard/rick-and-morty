@@ -18,7 +18,12 @@ export const Button: React.FC<IButton> = ({
   type,
 }) => {
   return (
-    <button type={type} onClick={onClick} className={style} disabled={disabled}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={`button__${style} button`}
+      disabled={disabled}
+    >
       {text}
     </button>
   );

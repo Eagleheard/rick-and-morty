@@ -19,4 +19,23 @@
     background-color: $orange;
     transition: background-color 0.2s ease-in-out;
   }
+
+  &__pagination-btn {
+    background-color: $secondary;
+    border-radius: 50%;
+    width: 8%;
+    padding: 0;
+    align-self: center;
+    border: none;
+
+    &:disabled {
+      background-color: $gray;
+    }
+  }
+
+  &__sign-in {
+    background-color: $primary;
+    color: $black;
+    width: 30%;
+  }
 }
