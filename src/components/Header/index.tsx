@@ -9,6 +9,7 @@ import { useToast } from "hooks";
 
 import "./styles.scss";
 import { ToastOptions } from "types/enumerators";
+import { ToastComponent } from "components/Toast";
 
 export const Header = () => {
   const [isSignInVisible, setIsSignInVisible] = useState<boolean>(false);
@@ -67,6 +68,7 @@ export const Header = () => {
           handleClose={() => setIsSignUpVisible(false)}
         />
       )}
+      <ToastComponent />
     </header>
   );
 };
