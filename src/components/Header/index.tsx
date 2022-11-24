@@ -37,9 +37,7 @@ export const Header = () => {
         data: { message },
       },
     }) {
-      if (message !== "Need authorization") {
-        openToast(String(message), ToastOptions.error);
-      }
+      openToast(String(message), ToastOptions.error);
     }
   };
   useEffect(() => {
