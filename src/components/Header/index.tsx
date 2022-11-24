@@ -5,13 +5,17 @@ import { Button } from "../Button";
 import { SignIn, SignUp } from "components/Authorization";
 import { useAuth } from "hooks/useAuth";
 import { authorization } from "api/authorization";
+import { useToast } from "hooks";
 
 import "./styles.scss";
+import { ToastOptions } from "types/enumerators";
 
 export const Header = () => {
   const [isSignInVisible, setIsSignInVisible] = useState<boolean>(false);
   const [isSignUpVisible, setIsSignUpVisible] = useState<boolean>(false);
   const { user, setUser } = useAuth();
+  const { openToast } = useToast();
+
   const handleSwitch = () => {
     if (isSignInVisible) {
       setIsSignInVisible(false);
@@ -33,7 +37,9 @@ export const Header = () => {
         data: { message },
       },
     }) {
-      message ? console.log("hi") : console.log("hello");
+      if (message !== "Need authorization") {
+        openToast(String(message), ToastOptions.error);
+      }
     }
   };
   useEffect(() => {

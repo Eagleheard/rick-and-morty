@@ -15,3 +15,8 @@ export enum INDICATORS {
   dead = "Dead",
   unknown = "unknown",
 }
+
+export enum ToastOptions {
+  error = "error",
+  success = "success",
+}
