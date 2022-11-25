@@ -46,4 +46,8 @@
   &__logout {
     width: 7%;
   }
+
+  @include media-table-large {
+    width: 25%;
+  }
 }

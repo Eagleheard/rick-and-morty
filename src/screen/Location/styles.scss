@@ -21,5 +21,28 @@
     grid-template-areas: "card card card";
     width: 100%;
     margin-top: 20px;
+
+    @include media-desktop {
+      grid-template-columns: repeat(auto-fit, 50%);
+      grid-template-areas: "card card";
+      align-items: center;
+      justify-items: center;
+      align-self: center;
+      width: 95%;
+    }
+
+    @include media-table-large {
+      justify-content: center;
+      grid-template-columns: auto;
+      grid-template-areas: "card";
+      margin-top: 10px;
+    }
+
+    @include media-mobile-small {
+      justify-content: center;
+      grid-template-columns: auto;
+      grid-template-areas: "card";
+      margin-top: 10px;
+    }
   }
 }

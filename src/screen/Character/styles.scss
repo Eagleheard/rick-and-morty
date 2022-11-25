@@ -55,4 +55,41 @@
     font-family: $lato;
     font-size: 18px;
   }
+
+  @include media-desktop {
+    &__image {
+      width: 30%;
+    }
+    &__episodes {
+      align-items: flex-start;
+    }
+    &__episode {
+      font-size: 16px;
+    }
+  }
+
+  @include media-table-large {
+    width: 100%;
+
+    &__container {
+      margin-top: 0;
+    }
+
+    &__info {
+      margin: 20px 5px;
+    }
+  }
+
+  @include media-mobile-large {
+    flex-direction: column;
+    align-items: center;
+
+    &__image {
+      width: 50%;
+    }
+
+    &__episodes {
+      align-items: center;
+    }
+  }
 }

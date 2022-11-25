@@ -107,6 +107,14 @@
     align-items: center;
     font-family: $lato;
     width: 36%;
+
+    @include media-table-large {
+      width: 45%;
+    }
+
+    @include media-table-small {
+      width: 55%;
+    }
   }
 
   &__submit {
