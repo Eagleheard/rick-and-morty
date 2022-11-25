@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { fetchCharacterInfo } from "api/fetchCharacterInfo";
 import { fetchLocationInfo } from "api/fetchLocationInfo";
 import { ICard, ILocation } from "types/interfaces";
 import { Card } from "components";
+import { useToast } from "hooks";
+import { ToastOptions } from "types/enumerators";
+import { Loader } from "components/Loader";
 
 import "./styles.scss";
 
@@ -13,8 +16,10 @@ export const Location = () => {
   const [locationInfo, setLocationInfo] = useState<ILocation>();
   const [charactersId, setCharactersId] = useState<number[]>([]);
   const [charactersInfo, setCharactersInfo] = useState<ICard[]>([]);
+  const { openToast } = useToast();
+  const navigate = useNavigate();
 
-  const getEpisodeInfo = async () => {
+  const getLocationInfo = async () => {
     try {
       const { data } = await fetchLocationInfo(locationId);
       setLocationInfo(data);
@@ -23,21 +28,22 @@ export const Location = () => {
           parseInt(el.slice(el.lastIndexOf("/") + 1, el.length))
         )
       );
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
+      navigate("/");
     }
   };
   const getCharactersByEpisode = async () => {
     try {
       const { data } = await fetchCharacterInfo(charactersId);
       setCharactersInfo(data);
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
     }
   };
 
   useEffect(() => {
-    getEpisodeInfo();
+    getLocationInfo();
   }, []);
 
   useEffect(() => {
@@ -53,7 +59,7 @@ export const Location = () => {
         </h1>
       </div>{" "}
       <div className="location__cards">
-        {charactersInfo.length !== 0 &&
+        {charactersInfo.length !== 0 ? (
           charactersInfo.map((data) => (
             <Card
               key={data.id}
@@ -65,7 +71,10 @@ export const Location = () => {
               id={data.id}
               image={data.image}
             />
-          ))}
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );

@@ -22,11 +22,7 @@ export const SignUp: React.FC<ISign> = ({ handleSwitch, style }) => {
     try {
       await registration(params);
       handleSwitch();
-    } catch ({
-      response: {
-        data: { message },
-      },
-    }) {
+    } catch ({ message }) {
       setError(String(message));
     }
   };
@@ -40,6 +36,26 @@ export const SignUp: React.FC<ISign> = ({ handleSwitch, style }) => {
   return (
     <div className="login">
       <form onSubmit={handleSubmit(submitForm)} className="login__form">
+        <div className="login__group">
+          <input
+            type="text"
+            id="name"
+            maxLength={20}
+            placeholder="name"
+            onKeyPress={(e) => /[0-9]/.test(e.key) && e.preventDefault()}
+            className="login__name"
+            {...register("name", {
+              required: true,
+              validate: (value) => value.length !== 0,
+            })}
+          />
+          <label htmlFor="name" className="login__label">
+            First Name
+          </label>
+          {errors.name && (
+            <p className="login__name--error">Name cannot be empty</p>
+          )}
+        </div>
         <div className="login__group">
           <input
             type="email"

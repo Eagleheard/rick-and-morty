@@ -9,21 +9,17 @@ export const registration = (params: IUser) => {
 };
 
 export const login = (params?: IUser) => {
-  return axios.post(
-    `https://rick-and-morty-server-gzy5.vercel.app/login`,
-    params,
-    {
-      withCredentials: true,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return axios.post(`http://localhost:5000/login`, params, {
+    withCredentials: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
 };
 
 export const authorization = () => {
-  return axios.get(`https://rick-and-morty-server-gzy5.vercel.app/auth`, {
+  return axios.get(`http://localhost:5000/auth`, {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },

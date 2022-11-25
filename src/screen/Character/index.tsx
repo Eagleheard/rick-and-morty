@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import classNames from "classnames";
 
 import { fetchCharacterInfo } from "api/fetchCharacterInfo";
 import { ICharacter } from "types/interfaces";
-import { INDICATORS } from "types/enumerators";
+import { INDICATORS, ToastOptions } from "types/enumerators";
 import { fetchEpisodeInfo } from "api/fetchEpisodeInfo";
 import { IEpisode } from "./../../types/interfaces";
+import { useToast } from "hooks";
 
 import "./styles.scss";
 
@@ -14,13 +15,16 @@ export const Character = () => {
   const { characterId } = useParams<string>();
   const [character, setCharacter] = useState<ICharacter>();
   const [epInfo, setEpInfo] = useState<IEpisode[]>([]);
+  const { openToast } = useToast();
+  const navigate = useNavigate();
 
   const getCharacterInfo = async () => {
     try {
       const { data } = await fetchCharacterInfo(characterId);
       setCharacter(data);
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
+      navigate("/");
     }
   };
 
@@ -28,8 +32,8 @@ export const Character = () => {
     try {
       const { data } = await fetchEpisodeInfo(epUrl);
       setEpInfo((prevValue) => [...prevValue, data]);
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
     }
   };
   useEffect(() => {

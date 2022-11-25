@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { fetchEpisodeInfo } from "api/fetchEpisodeInfo";
 import { IEpisode } from "types/interfaces";
 import { fetchCharacterInfo } from "api/fetchCharacterInfo";
 import { ICard } from "types/interfaces";
 import { Card } from "components";
+import { useToast } from "hooks";
+import { ToastOptions } from "types/enumerators";
+import { Loader } from "components/Loader";
 
 import "./styles.scss";
 
@@ -14,6 +17,8 @@ export const Episode = () => {
   const [episodeInfo, setEpisodeInfo] = useState<IEpisode>();
   const [charactersId, setCharactersId] = useState<number[]>([]);
   const [charactersInfo, setCharactersInfo] = useState<ICard[]>([]);
+  const { openToast } = useToast();
+  const navigate = useNavigate();
 
   const getEpisodeInfo = async () => {
     try {
@@ -26,16 +31,17 @@ export const Episode = () => {
           parseInt(el.slice(el.lastIndexOf("/") + 1, el.length))
         )
       );
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
+      navigate("/");
     }
   };
   const getCharactersByEpisode = async () => {
     try {
       const { data } = await fetchCharacterInfo(charactersId);
       setCharactersInfo(data);
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
     }
   };
 
@@ -64,7 +70,7 @@ export const Episode = () => {
         </h1>
       </div>
       <div className="episode__cards">
-        {charactersInfo.length !== 0 &&
+        {charactersInfo.length !== 0 ? (
           charactersInfo.map((data) => (
             <Card
               key={data.id}
@@ -76,7 +82,10 @@ export const Episode = () => {
               id={data.id}
               image={data.image}
             />
-          ))}
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );

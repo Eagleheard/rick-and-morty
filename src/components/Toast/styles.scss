@@ -1,5 +1,5 @@
-@import 'constants/const-styles';
-@import 'constants/media-queries';
+@import "constants/const-styles";
+@import "constants/media-queries";
 
 .snackbar {
   display: none;
@@ -11,9 +11,9 @@
   right: 30px;
   bottom: 30px;
 
-    &__show {
-        display: block;
-        animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  &__show {
+    display: block;
+    animation: fadein 0.5s, fadeout 1s 4s;
 
     &--error {
       background-color: $error;

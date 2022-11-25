@@ -3,9 +3,9 @@ import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 
 import { fetchEpisodeInfo } from "api/fetchEpisodeInfo";
-
+import { useToast } from "hooks";
 import { ICard } from "types/interfaces";
-import { INDICATORS } from "types/enumerators";
+import { INDICATORS, ToastOptions } from "types/enumerators";
 
 import "./styles.scss";
 import "constants/base.scss";
@@ -34,12 +34,13 @@ export const Card: React.FC<ICard> = ({
     episode: "",
     characters: [],
   });
+  const { openToast } = useToast();
   const getEpisodeInfo = async () => {
     try {
       const { data } = await fetchEpisodeInfo(episode[0]);
       setEpisodeInfo(data);
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
     }
   };
   useEffect(() => {

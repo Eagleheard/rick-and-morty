@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { fetchCharactersInfo } from "api/fetchCharacters";
-
+import { useToast } from "hooks";
+import { ToastOptions } from "types/enumerators";
 import { Card, Pagination } from "components";
-import { ICard, ICharacter } from "types/interfaces";
+import { ICard } from "types/interfaces";
+import { Loader } from "components/Loader";
 
 import "./styles.scss";
 
@@ -24,13 +26,14 @@ export const Home: React.FC = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const { openToast } = useToast();
   const fetchCharacters = async () => {
     try {
       const { data } = await fetchCharactersInfo(currentPage);
       setCharacters(data.results);
       setCharactersInfo(data.info);
-    } catch (e) {
-      console.log(e);
+    } catch ({ message }) {
+      openToast(String(message), ToastOptions.error);
     }
   };
   useEffect(() => {
@@ -51,7 +54,7 @@ export const Home: React.FC = () => {
           onPageChange={(page: number) => setCurrentPage(page)}
         />
       ) : (
-        <div>Home</div>
+        <Loader />
       )}
     </div>
   );

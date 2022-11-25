@@ -6,10 +6,11 @@ import { SignIn, SignUp } from "components/Authorization";
 import { useAuth } from "hooks/useAuth";
 import { authorization } from "api/authorization";
 import { useToast } from "hooks";
-
-import "./styles.scss";
 import { ToastOptions } from "types/enumerators";
 import { ToastComponent } from "components/Toast";
+
+import "./styles.scss";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   const [isSignInVisible, setIsSignInVisible] = useState<boolean>(false);
@@ -33,25 +34,30 @@ export const Header = () => {
     try {
       const { data } = await authorization();
       setUser(data);
-    } catch ({
-      response: {
-        data: { message },
-      },
-    }) {
-      openToast(String(message), ToastOptions.error);
+    } catch ({ message }) {
+      if (message !== "Request failed with status code 401") {
+        openToast(String(message), ToastOptions.error);
+      }
     }
   };
   useEffect(() => {
     checkUser();
   }, []);
-  console.log(user);
+
   return (
     <header className="header">
-      <Button
-        text={user ? "Profile" : "Login"}
-        onClick={() => setIsSignInVisible(true)}
-        style="button"
-      />
+      {!user ? (
+        <Button
+          text="Login"
+          onClick={() => setIsSignInVisible(true)}
+          style="button"
+        />
+      ) : (
+        <NavLink to={`/profile/${user.email}`} className="header__profile">
+          {" "}
+          <Button text="Profile" onClick={() => 1} style="header" />
+        </NavLink>
+      )}
       {isSignInVisible && !user && (
         <Portal
           Component={() => <SignIn handleSwitch={handleSwitch} />}

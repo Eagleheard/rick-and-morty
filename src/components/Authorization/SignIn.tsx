@@ -11,6 +11,7 @@ import "./styles.scss";
 export const SignIn: React.FC<ISign> = ({ handleSwitch }) => {
   const { setUser } = useAuth();
   const [error, setError] = useState<string>();
+  const [isRemembered, setIsRemembered] = useState(false);
   const {
     handleSubmit,
     register,
@@ -21,7 +22,9 @@ export const SignIn: React.FC<ISign> = ({ handleSwitch }) => {
     try {
       const { data } = await login(params);
       setUser(data);
-      sessionStorage.setItem("token", data.token);
+      if (isRemembered) {
+        sessionStorage.setItem("token", data.token);
+      }
     } catch ({
       response: {
         data: { message },
@@ -65,6 +68,15 @@ export const SignIn: React.FC<ISign> = ({ handleSwitch }) => {
           <label htmlFor="password" className="login__label">
             Password
           </label>
+        </div>
+        <div className="login__remember">
+          <input
+            type="checkbox"
+            className="login__checkbox"
+            checked={isRemembered}
+            onChange={() => setIsRemembered((prevValue) => !prevValue)}
+          />
+          <h5 className="login__sign">Remember me!</h5>
         </div>
         <div className="login__submit">
           <h5 className="login__sign">
