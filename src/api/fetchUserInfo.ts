@@ -1,11 +1,16 @@
 import axios from "axios";
 
 export const fetchUserInfo = (email?: string) => {
-  return axios.get(`http://localhost:5000/profile/${email}`);
+  return axios.get(
+    `https://rick-and-morty-server-gzy5.vercel.app/profile/${email}`
+  );
 };
 
 export const updateUserInfo = (description?: string, email?: string) => {
-  return axios.put(`http://localhost:5000/update/${email}`, {
-    description: description,
-  });
+  return axios.put(
+    `https://rick-and-morty-server-gzy5.vercel.app/update/${email}`,
+    {
+      description: description,
+    }
+  );
 };
