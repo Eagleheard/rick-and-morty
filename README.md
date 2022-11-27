@@ -39,6 +39,10 @@ Also you can click at the pen and change your bio
 ![image](https://user-images.githubusercontent.com/39688940/204084181-d1c2bf65-a670-4de7-a385-eee0cdd24ad4.png)
 Or click at Logout and move to home page.
 
+If you will have api error or wrong request you'll see error message
+![image](https://user-images.githubusercontent.com/39688940/204144113-d0431eeb-e3ea-49e6-872d-71d0db94e50e.png)
+
+
 
 Also i added responsive styles for all pages
 ![image](https://user-images.githubusercontent.com/39688940/204084250-6deaaefc-e650-4520-b273-51d09ff0ed3e.png)
