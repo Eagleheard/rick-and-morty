@@ -9,29 +9,3 @@
     color: $orange;
   }
 }
-
-.admin {
-  &__link {
-    color: $light-gray;
-    font-family: $lato;
-    font-size: 16px;
-    text-decoration: none;
-
-    &.active {
-      color: $secondary;
-    }
-
-    &:hover {
-      color: $button;
-    }
-  }
-
-  &__button {
-    color: $black;
-    text-decoration: none;
-
-    &.active {
-      color: $secondary;
-    }
-  }
-}
