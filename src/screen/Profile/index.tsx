@@ -90,7 +90,7 @@ export const Profile = () => {
                 minRows={3}
                 placeholder="Your bio"
                 style={{ width: 200 }}
-                value={user.description}
+                value={userDescription}
                 className="profile__description--edit"
                 onChange={(e) => setUserDescription(e.target.value)}
               />
