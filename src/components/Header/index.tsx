@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import { Portal } from "components";
 import { Button } from "../Button";
@@ -10,7 +11,6 @@ import { ToastOptions } from "types/enumerators";
 import { ToastComponent } from "components/Toast";
 
 import "./styles.scss";
-import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   const [isSignInVisible, setIsSignInVisible] = useState<boolean>(false);
@@ -32,8 +32,10 @@ export const Header = () => {
   };
   const checkUser = async () => {
     try {
-      const { data } = await authorization();
-      setUser(data);
+      if (sessionStorage.getItem("token")) {
+        const { data } = await authorization();
+        setUser(data);
+      }
     } catch ({ message }) {
       if (message !== "Request failed with status code 401") {
         openToast(String(message), ToastOptions.error);

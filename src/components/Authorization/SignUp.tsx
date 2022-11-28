@@ -22,7 +22,11 @@ export const SignUp: React.FC<ISign> = ({ handleSwitch, style }) => {
     try {
       await registration(params);
       handleSwitch();
-    } catch ({ message }) {
+    } catch ({
+      response: {
+        data: { message },
+      },
+    }) {
       setError(String(message));
     }
   };

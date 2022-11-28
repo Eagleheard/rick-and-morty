@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { IUser } from "./../types/interfaces";
+import { IUser } from "types/interfaces";
 
 export const registration = (params: IUser) => {
   return axios.post(

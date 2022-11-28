@@ -2,11 +2,11 @@ import React from "react";
 import classNames from "classnames";
 
 import { usePagination } from "hooks";
-import { ICharacter, ICard } from "types/interfaces";
+import { ICard } from "types/interfaces";
 import { Button } from "components";
+import { PaginationOptions } from "types/enumerators";
 
 import "./styles.scss";
-import { PaginationOptions } from "types/enumerators";
 
 interface PaginationProps {
   RenderComponent: React.FC<ICard>;
